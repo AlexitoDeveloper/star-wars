@@ -1,0 +1,21 @@
+@import "variables";
+
+:root {
+  font-family: $font-family;
+  line-height: $line-height;
+  font-weight: $font-weight;
+
+  color-scheme: light dark;
+  color: $font-color-dark;
+  background-color: $primary-background-color-dark;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (prefers-color-scheme: light) {
+    color: $font-color-light;
+    background-color: $primary-background-color-light;
+  }
+}
