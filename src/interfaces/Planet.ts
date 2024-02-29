@@ -6,4 +6,5 @@ export interface Planet {
 	climate: string
 	population: number
 	residents: Array<People>
+	terrain: string
 }
