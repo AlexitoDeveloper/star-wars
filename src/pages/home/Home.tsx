@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { getPlanets } from '../../api/api'
 import { Planet } from '../../interfaces/Planet'
 import PlanetCard from '../../components/planet-card/PlanetCard'
+import './Home.scss'
 
 const Home = () => {
 	const [planets, setPlanets] = useState<Planet[]>([])
@@ -16,7 +17,7 @@ const Home = () => {
 	}, [])
 
 	return (
-		<section>
+		<section className='container'>
 			{planets?.map(planet => (
 				<PlanetCard key={planet.name} planet={planet} />
 			))}
