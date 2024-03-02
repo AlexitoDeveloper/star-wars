@@ -1,6 +1,10 @@
 import { MoveDirection } from '@tsparticles/engine'
 
 const particlesConfig = {
+	'fullScreen': {
+		'enable': true,
+		'zIndex': 0
+	},
 	'particles': {
 		'number': {
 			'value': 160,

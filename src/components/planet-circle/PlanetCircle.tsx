@@ -3,6 +3,8 @@ import './PlanetCircle.scss'
 
 interface Props {
 	terrain?: string
+	width?: string
+	height?: string
 }
 
 enum TerrainType {
@@ -24,7 +26,7 @@ const terrainColorMap: Record<TerrainType, string> = {
 	[TerrainType.Unknown]: 'unkwown'
 }
 
-const PlanetCircle = ({terrain}: Props) => {
+const PlanetCircle = ({ terrain, width, height }: Props) => {
 	const [color, setColor] = useState(terrainColorMap[TerrainType.Unknown])
 
 	useEffect(() => {
@@ -34,7 +36,7 @@ const PlanetCircle = ({terrain}: Props) => {
 		}
 	}, [])
 
-	return <div className={`planet--${color}`}></div>
+	return <div className={`planet--${color}`} style={{ width: width ?? '8rem', height: height?? '8rem' }}></div>
 }
 
 export default PlanetCircle

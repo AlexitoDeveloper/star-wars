@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import { Planet } from '../../interfaces/Planet'
 import PlanetCircle from '../planet-circle/PlanetCircle'
 import './PlanetCard.scss'
@@ -7,8 +8,14 @@ interface Props {
 }
 
 const PlanetCard = ({planet}: Props) => {
+	const navigate = useNavigate()
+
+	const goToDetail = () => {
+		navigate(`/${planet?.name}`)
+	}
+
 	return (
-		<article className='card'>
+		<article className='card' onClick={() => goToDetail()}>
 			<header>
 				<PlanetCircle terrain={planet?.terrain} />
 				<h3>{planet?.name}</h3>
