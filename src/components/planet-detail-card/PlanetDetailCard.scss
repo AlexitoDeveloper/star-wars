@@ -23,6 +23,8 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		flex-direction: column;
+		gap: 1.5rem;
 		width: 20%;
 		min-width: 18rem;
 
@@ -30,14 +32,23 @@
 			width: 100%;
 			min-width: 10rem;
 		}
+
+		> div {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			gap: 1.2rem;
+		}
 	}
 
 	&__info {
 		flex: 1;
 
-		> h1 {
+		&--title {
 			font-size: 2rem;
-			text-align: center;
+			display: flex;
+			justify-content: center;
+			flex: 1;
 		}
 
 		&--list {

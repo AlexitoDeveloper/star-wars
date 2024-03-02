@@ -1,0 +1,12 @@
+@import "src/styles/variables";
+
+button {
+  font-weight: bold !important;
+  color: $button-font-color !important;
+  background-color: $button-background-color !important;
+
+  &:hover {
+    background-color: $light-blue !important;
+    border-color: $light-blue !important;
+  }
+}
