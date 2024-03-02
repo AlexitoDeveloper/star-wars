@@ -18,6 +18,7 @@ interface Action {
   setSelectedPlanet: (selectedPlanet: Planet | null) => void
   loadPeople: (planet: Planet) => Promise<People[]>
   resetSelectedPlanet: () => void
+	updatePlanet: (planet: Planet) => void
 }
 
 const initialState: State = {
@@ -39,12 +40,13 @@ export const usePlanetStore = create<State & Action>((set, get) => ({
 	},
 
 	loadNextPage: async () => {
-		if(get().next) {
-			const data = await getPlanets(get().next)
+		const {next, planets} = get()
+		if(next) {
+			const data = await getPlanets(next)
 			if(data) {
 				const morePlanets = data.results.map(planet => ({...planet, id: crypto.randomUUID()}))
-				const planets = [...get().planets].concat(morePlanets)
-				set({planets, next: data.next, previous: data.previous})
+				const updatedPlanets = [...planets].concat(morePlanets)
+				set({planets: updatedPlanets, next: data.next, previous: data.previous})
 			}
 		}
 	},
@@ -66,5 +68,19 @@ export const usePlanetStore = create<State & Action>((set, get) => ({
 		}
 	},
 
-	resetSelectedPlanet: () => set({selectedPlanet: null})
+	resetSelectedPlanet: () => set({selectedPlanet: null}),
+
+	updatePlanet: (planet: Planet) => {
+		const {selectedPlanet, planets} = get()
+
+		const updatedPlanets = planets.map(p => {
+			if(p.id === planet.id) return planet
+			return p
+		})
+		set({planets: updatedPlanets})
+		
+		if(selectedPlanet && planet.id === selectedPlanet.id) {
+			set({selectedPlanet: planet})
+		}
+	}
 }))

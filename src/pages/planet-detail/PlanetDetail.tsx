@@ -4,7 +4,8 @@ import { usePlanetStore } from '../../store/planetStore'
 import { useEffect, useState } from 'react'
 import { Planet } from '../../interfaces/Planet'
 import { getPlanet } from '../../api/api'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation, useNavigate } from 'react-router-dom'
+import PlanetDetailCardEdit from '../../components/planet-detail-card/edit/PlanetDetailCardEdit'
 
 const PlanetDetail = () => {
 	const planets = usePlanetStore(state => state.planets)
@@ -15,12 +16,18 @@ const PlanetDetail = () => {
 	
 	const [loading, setLoading] = useState(false)
 	const { name } = useParams()
+	const { state } = useLocation()
+	const navigate = useNavigate()
 
 	useEffect(() => {
 		if(!selectedPlanet && !planets.length && name) {
 			setLoading(true)
 			getPlanet(name).then(response => {
-				setSelectedPlanet(response)
+				if(response) {
+					setSelectedPlanet(response)
+				} else {
+					navigate('/', {replace: true})
+				}
 			})
 		}
 
@@ -43,7 +50,8 @@ const PlanetDetail = () => {
 	return (
 		<section>
 			{loading && <h4>Loading</h4>}
-			{!loading && <PlanetDetailCard planet={selectedPlanet as Planet} />}
+			{!loading && state !== 'edit' && <PlanetDetailCard planet={selectedPlanet as Planet} />}
+			{!loading && state === 'edit' && <PlanetDetailCardEdit planet={selectedPlanet as Planet} />}
 		</section>
 	) 
 }
