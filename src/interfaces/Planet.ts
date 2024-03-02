@@ -1,4 +1,7 @@
+import { People } from './People'
+
 export interface Planet {
+	id: string
 	name: string
 	diameter: number
 	climate: string
@@ -6,4 +9,5 @@ export interface Planet {
 	residents: Array<string>
 	terrain: string
 	url: string
+	people?: Array<People>
 }

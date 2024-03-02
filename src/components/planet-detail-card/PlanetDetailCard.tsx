@@ -1,14 +1,12 @@
-import { People } from '../../interfaces/People'
 import { Planet } from '../../interfaces/Planet'
 import PlanetCircle from '../planet-circle/PlanetCircle'
 import './PlanetDetailCard.scss'
 
 interface Props {
-	planet: Planet | null
-	residents?: People[]
+	planet: Planet
 }
 
-const PlanetDetailCard = ({ planet, residents }: Props) => {
+const PlanetDetailCard = ({ planet }: Props) => {
 	return (
 		<article className="detail-card">
 			<div className="detail-card__image">
@@ -27,16 +25,13 @@ const PlanetDetailCard = ({ planet, residents }: Props) => {
 					</div>
 				</div>
 
-				{residents && residents.length > 0 && (
+				{planet?.people && planet?.people.length > 0 && (
 					<>
 						<p>Residents:</p>
 						<ul className='detail-card__info__residents--list'>
-							{residents?.map(resident => (<li key={resident.name}>{resident.name}</li>))}
+							{planet.people?.map(resident => (<li key={resident.name}>{resident.name}</li>))}
 						</ul>
 					</>
-				)}
-				{!residents?.length && (
-					<p>Loading residents...</p>
 				)}
 			</div>
 		</article>

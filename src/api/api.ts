@@ -1,36 +1,25 @@
 import axios from 'axios'
 import { PlanetList } from '../interfaces/PlanetList'
-import { People } from '../interfaces/People'
+import { Planet } from '../interfaces/Planet'
 
 const PLANETS_URL = 'https://swapi.dev/api/planets/'
-const PEOPLE_URL = 'https://swapi.dev/api/people/'
 
-export const getPlanets = async (): Promise<PlanetList> => {
+export const getPlanets = async (url?: string | null): Promise<PlanetList | null> => {
 	try {
-		const response = await axios.get(PLANETS_URL)
+		const response = await axios.get(url ?? PLANETS_URL)
 		return response.data
 	} catch(error) {
 		console.log(error)
-		throw error
+		return null
 	}
 }
 
-export const getPlanet = async (name: string): Promise<PlanetList> => {
+export const getPlanet = async (name: string): Promise<Planet | null> => {
 	try {
 		const response = await axios.get(`${PLANETS_URL}/?search=${name}`)
-		return response.data
+		return response.data.results[0]
 	} catch(error) {
 		console.log(error)
-		throw error
-	}
-}
-
-export const getPeople = async (name: string): Promise<People> => {
-	try {
-		const response = await axios.get(`${PEOPLE_URL}/?search=${name}`)
-		return response.data
-	} catch(error) {
-		console.log(error)
-		throw error
+		return null
 	}
 }

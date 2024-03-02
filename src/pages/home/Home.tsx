@@ -1,27 +1,38 @@
-import { useEffect, useState } from 'react'
-import { getPlanets } from '../../api/api'
-import { Planet } from '../../interfaces/Planet'
+import { useEffect } from 'react'
 import PlanetCard from '../../components/planet-card/PlanetCard'
 import './Home.scss'
+import { usePlanetStore } from '../../store/planetStore'
+import InfiniteScroll from 'react-infinite-scroll-component'
 
 const Home = () => {
-	const [planets, setPlanets] = useState<Planet[]>([])
+	const planets = usePlanetStore(state => state.planets)
+	const loadPlanets = usePlanetStore(state => state.loadPlanets)
+	const loadNextPage = usePlanetStore(state => state.loadNextPage)
+	const nextPage = usePlanetStore(state => state.next)
+	const selectedPlanet = usePlanetStore(state => state.selectedPlanet)
+	const resetSelectedPlanet = usePlanetStore(state => state.resetSelectedPlanet)
 
 	useEffect(() => {
-		(async () => {
-			const data = await getPlanets()
-			if(data?.results.length) {
-				setPlanets(data.results)
-			}
-		})()
+		if(!planets?.length) {
+			loadPlanets()
+		}
+		if(selectedPlanet) {
+			resetSelectedPlanet()
+		}
 	}, [])
 
 	return (
-		<section className='container'>
+		<InfiniteScroll
+			className='container'
+			dataLength={planets.length}
+			next={() => loadNextPage()}
+			hasMore={Boolean(nextPage)}
+			loader={<h4>Loading...</h4>}
+		>
 			{planets?.map(planet => (
-				<PlanetCard key={planet.name} planet={planet} />
+				<PlanetCard key={planet.id} planet={planet} />
 			))}
-		</section>
+		</InfiniteScroll>
 	)
 }
 
