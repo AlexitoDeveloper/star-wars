@@ -1,30 +1,55 @@
-# React + TypeScript + Vite
+# Prueba técnica Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+En esta prueba se han realizado los siguientes puntos:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Crear un proyecto React con Vite.
+- Código realizado totalmente en TypeScript sin tipados any.
+- Uso de componentes funcionales.
+- Uso de [Zustand](https://zustand-demo.pmnd.rs/) como manegador de estado global.
+- Uso de la API [Swapi](https://swapi.dev/).
+- Testing mediante [Vitest](https://vitest.dev/).
+- Listado de planetas con scroll infinito.
+- Edición y borrado de planetas.
+- Enrutado con [React Router](https://reactrouter.com/en/main)
+- Uso de la librería [AntDesign](https://ant.design/) para componentes como Input, Button o Skeleton.
 
-## Expanding the ESLint configuration
+## Requisitos
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Tener instalado npm y Node.js (en mi caso: npm 9.8.1 y Node.js 18.18.1)
 
-- Configure the top-level `parserOptions` property like this:
+## Tecnologías
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+Para este proyecto, se ha utilizado las siguientes tecnologías:
+
+- [Vite](https://vitejs.dev/)
+- [React](https://react.dev/)
+- [Sass](https://sass-lang.com/)
+- [Zustand](https://zustand-demo.pmnd.rs/)
+- [Vitest](https://vitest.dev/)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+- [AntDesign](https://ant.design/)
+
+## Arrancar el proyecto
+
+Para poder arrancar el proyecto, primero hay que instalar las dependencias. Para ello, nos situamos en la raiz del proyecto y ejecutamos:
+
+```bash
+npm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Hecho esto, se autogenerará el node_modules (que contendrá las dependencias del package.json) y el package-lock.json.
+Una vez instaladas las dependencias, para iniciar el proyecto ejecutamos:
+
+```bash
+npm run dev
+```
+
+Finalmente, abrimos el navegador con la URL especificada en la terminal para visualizar el proyecto.
+
+Para ejecutar los tests:
+
+```bash
+npm run test
+```
