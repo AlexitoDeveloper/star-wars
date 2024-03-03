@@ -1,0 +1,30 @@
+@import "src/styles/variables";
+
+$planet-terrains: (desert, mountains, ice, ocean, jungle, unknown);
+
+@each $terrain in $planet-terrains {
+  .planet--#{$terrain} {
+    width: 8rem;
+    height: 8rem; 
+    border-radius: 50%;
+
+    @if $terrain == desert {
+      background: linear-gradient(135deg, rgba(153,133,122,1) 20%, rgba(198,123,92,1) 60%, rgba(226,123,88,1) 100%);
+    }
+    @else if $terrain == mountains {
+      background: linear-gradient(135deg, rgba(60,66,88,1) 20%, rgba(148,91,71,1) 60%, rgba(59,93,56,1) 100%);
+    }
+    @else if $terrain == ice {
+      background: linear-gradient(135deg, rgba(101,134,139,1) 20%, rgba(187,225,228,1) 60%, rgba(213,251,252,1) 100%);
+    }
+    @else if $terrain == ocean {
+      background: linear-gradient(135deg, rgba(7,67,94,1) 20%, rgba(67,144,186,1) 60%, rgba(216,247,255,1) 100%);
+    }
+    @else if $terrain == jungle {
+      background: linear-gradient(135deg, rgba(46,82,28,1) 20%, rgba(45,116,73,1) 60%, rgba(166,179,105,1) 100%);
+    }
+		@else if $terrain == unknown {
+			background: linear-gradient(135deg, rgba(139,145,161,1) 20%, rgba(221,216,212,1) 60%, rgba(239,239,239,1) 100%);
+		}
+  }
+}

@@ -1,0 +1,42 @@
+@import "src/styles/variables";
+
+.card {
+	background: linear-gradient(180deg, rgba(28,37,65,0.6) 35%, rgba(58,80,107,0.6) 100%);
+	border-radius: 0.5em;
+	width: 20rem;
+	font-size: 1rem;
+	padding: 1.5em;
+	box-sizing: border-box;
+	transition: box-shadow 0.3s ease;
+	backdrop-filter: blur(8px);
+
+	display: flex;
+	flex-direction: column;
+
+	&:hover {
+		cursor: pointer;
+		box-shadow: 0rem 0rem 1.5rem 0.5rem $light-blue;
+
+		> header {
+			color: $light-blue;
+		}
+	}
+
+	> header {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 1em;
+		transition: color 0.3s ease;
+	}
+
+	&__footer {
+		margin-top: 1rem;
+		display: flex;
+		justify-content: flex-end;
+		align-items: flex-end;
+		gap: 1.2rem;
+		height: 100%;
+	}
+}

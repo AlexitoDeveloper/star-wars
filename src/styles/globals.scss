@@ -1,0 +1,20 @@
+@import "variables";
+
+:root {
+  font-family: $font-family;
+  line-height: $line-height;
+  font-weight: $font-weight;
+
+  color: $font-color;
+  background-color: $primary-background-color;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+}
