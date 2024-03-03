@@ -1,6 +1,6 @@
 @import "src/styles/variables";
 
-$planet-terrains: (desert, mountains, ice, ocean, jungle, unkwown);
+$planet-terrains: (desert, mountains, ice, ocean, jungle, unknown);
 
 @each $terrain in $planet-terrains {
   .planet--#{$terrain} {
@@ -23,7 +23,7 @@ $planet-terrains: (desert, mountains, ice, ocean, jungle, unkwown);
     @else if $terrain == jungle {
       background: linear-gradient(135deg, rgba(46,82,28,1) 20%, rgba(45,116,73,1) 60%, rgba(166,179,105,1) 100%);
     }
-		@else if $terrain == unkwown {
+		@else if $terrain == unknown {
 			background: linear-gradient(135deg, rgba(139,145,161,1) 20%, rgba(221,216,212,1) 60%, rgba(239,239,239,1) 100%);
 		}
   }

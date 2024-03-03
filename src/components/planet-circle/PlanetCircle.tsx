@@ -13,7 +13,7 @@ enum TerrainType {
   Ice = 'ice',
   Ocean = 'ocean',
   Jungle = 'jungle',
-	Unknown = 'unkwown'
+	Unknown = 'unknown'
 }
 
 
@@ -23,7 +23,7 @@ const terrainColorMap: Record<TerrainType, string> = {
 	[TerrainType.Ice]: 'ice',
 	[TerrainType.Ocean]: 'ocean',
 	[TerrainType.Jungle]: 'jungle',
-	[TerrainType.Unknown]: 'unkwown'
+	[TerrainType.Unknown]: 'unknown'
 }
 
 const PlanetCircle = ({ terrain, width, height }: Props) => {
@@ -36,7 +36,7 @@ const PlanetCircle = ({ terrain, width, height }: Props) => {
 		}
 	}, [])
 
-	return <div className={`planet--${color}`} style={{ width: width ?? '8rem', height: height?? '8rem' }}></div>
+	return <div className={`planet--${color}`} style={{ width: width ?? '8rem', height: height?? '8rem' }} data-testid="planet-circle"></div>
 }
 
 export default PlanetCircle
