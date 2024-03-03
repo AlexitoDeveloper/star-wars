@@ -3,6 +3,7 @@ import PlanetCard from '../../components/planet-card/PlanetCard'
 import './Home.scss'
 import { usePlanetStore } from '../../store/planetStore'
 import InfiniteScroll from 'react-infinite-scroll-component'
+import PlanetCardSkeleton from '../../components/planet-card/skeleton/PlanetCardSkeleton'
 
 const Home = () => {
 	const planets = usePlanetStore(state => state.planets)
@@ -27,7 +28,7 @@ const Home = () => {
 			dataLength={planets.length}
 			next={() => loadNextPage()}
 			hasMore={Boolean(nextPage)}
-			loader={<h4>Loading...</h4>}
+			loader={<PlanetCardSkeleton />}
 		>
 			{planets?.map(planet => (
 				<PlanetCard key={planet.id} planet={planet} />
