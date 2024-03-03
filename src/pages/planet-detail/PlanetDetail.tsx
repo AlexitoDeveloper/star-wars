@@ -35,13 +35,16 @@ const PlanetDetail = () => {
 			setLoading(true)
 			loadPeople(selectedPlanet)
 				.then(response => {
-					const updatedPlanets = planets.map(planet => {
-						if(planet.id === selectedPlanet.id) return {...planet, people: response}
-						return planet
-					})
-
-					setPlanets(updatedPlanets)
-					setSelectedPlanet({...selectedPlanet, people: response})
+					if(response?.length) {
+						const updatedPlanets = planets.map(planet => {
+							if(planet.id === selectedPlanet.id) return {...planet, people: response}
+							return planet
+						})
+	
+						setPlanets(updatedPlanets)
+						setSelectedPlanet({...selectedPlanet, people: response})
+					}
+				
 					setLoading(false)
 				})
 		} 

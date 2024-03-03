@@ -4,6 +4,7 @@ import PlanetCircle from '../planet-circle/PlanetCircle'
 import './PlanetCard.scss'
 import { usePlanetStore } from '../../store/planetStore'
 import Button from '../button/Button'
+import {Modal} from 'antd'
 
 interface Props {
 	planet: Planet
@@ -12,6 +13,8 @@ interface Props {
 const PlanetCard = ({planet}: Props) => {
 	const navigate = useNavigate()
 	const setSelectedPlanet = usePlanetStore(state => state.setSelectedPlanet)
+	const setPlanets = usePlanetStore(state => state.setPlanets)
+	const planets = usePlanetStore(state => state.planets)
 
 	const goToDetail = () => {
 		setSelectedPlanet(planet)
@@ -26,6 +29,20 @@ const PlanetCard = ({planet}: Props) => {
 	const handleDeleteClick = (e: React.MouseEvent) => {
 		e.stopPropagation()
 		console.log('Borrar')
+
+		Modal.confirm({
+			title: 'Confirm',
+			content: `Do you want to delete the planet ${planet.name}?`,
+			onOk: () => {
+				setPlanets([...planets].filter(p => p.id !== planet.id))
+			},
+			footer: (_, { OkBtn, CancelBtn }) => (
+				<>
+					<CancelBtn />
+					<OkBtn />
+				</>
+			),
+		})
 	}
 
 	return (
@@ -41,8 +58,8 @@ const PlanetCard = ({planet}: Props) => {
 				<p>Terrain: <strong>{planet.terrain}</strong></p>
 			</div>
 			<footer className='card__footer'>
-				<Button onClick={handleEditClick}>Editar</Button>
-				<Button onClick={handleDeleteClick}>Borrar</Button>
+				<Button onClick={handleEditClick}>Edit</Button>
+				<Button onClick={handleDeleteClick}>Delete</Button>
 			</footer>
 		</article>
 	)
