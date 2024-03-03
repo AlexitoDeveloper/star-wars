@@ -6,6 +6,7 @@ import { Planet } from '../../interfaces/Planet'
 import { getPlanet } from '../../api/api'
 import { useParams, useLocation, useNavigate } from 'react-router-dom'
 import PlanetDetailCardEdit from '../../components/planet-detail-card/edit/PlanetDetailCardEdit'
+import PlanetDetailCardSkeleton from '../../components/planet-detail-card/skeleton/PlanetDetailCardSkeleton'
 
 const PlanetDetail = () => {
 	const planets = usePlanetStore(state => state.planets)
@@ -52,7 +53,7 @@ const PlanetDetail = () => {
 
 	return (
 		<section>
-			{loading && <h4>Loading</h4>}
+			{loading && <PlanetDetailCardSkeleton />}
 			{!loading && state !== 'edit' && <PlanetDetailCard planet={selectedPlanet as Planet} />}
 			{!loading && state === 'edit' && <PlanetDetailCardEdit planet={selectedPlanet as Planet} />}
 		</section>
